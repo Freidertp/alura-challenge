@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Encriptador Alura</title>
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="header">
+      <img src="logo.png" alt="logoAlura" id="imglogo">
+    </div>
+
+    <div class="content">
+
+      <div class="inputarea">
+        <textarea class="textareainput" placeholder="Ingrese el texto aquí" oninput="lowerCase()"></textarea>
+
+        <div class=" notice">
+          <img src="bi_exclamation-circle-fill.png" alt="exclamationCircle">
+          <span>Solo letras minúsculas y sin acentos</span>
+        </div>
+
+        <div class="buttons">
+          <button class="button1" id="button1">Encriptar</button>
+          <button class="button2" id="button2">Desencriptar</button>
+        </div>
+
+      </div>
+
+      <div class="outputarea">
+        <textarea class="textareaoutput" readonly></textarea>
+        <img src="muñeco.png" alt="aluracharacter" id="aluracharacter">
+        <div class="notice">
+          <span class="span1">Ningún mensaje fue encontrado</span>
+          <span class="span2">Ingresa el texto que desees encriptar o desencriptar.</span>
+        </div>
+        <div class="button">
+          <button class="button3" id="button3">Copiar</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
