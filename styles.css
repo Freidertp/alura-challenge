@@ -32,6 +32,25 @@ body {
 
 }
 
+.textareainput {
+  width: 42.25rem;
+  height: 18rem;
+
+  font-size: 2em;
+  color: #0A3871;
+  background-color: #F3F5FC;
+
+  padding: 0;
+
+  border: none;
+  outline: none;
+  resize: none;
+
+  &.textareainput::placeholder {
+    color: #0A3871;
+  }
+}
+
 #inputmic {
   width: 2rem;
   height: 2rem;
@@ -51,26 +70,6 @@ body {
     background-color: #edb1f1;
   }
 
-}
-
-
-.textareainput {
-  width: 42.25rem;
-  height: 18rem;
-
-  font-size: 2em;
-  color: #0A3871;
-  background-color: #F3F5FC;
-
-  padding: 0;
-
-  border: none;
-  outline: none;
-  resize: none;
-
-  &.textareainput::placeholder {
-    color: #0A3871;
-  }
 }
 
 .inputarea .notice {
@@ -243,11 +242,11 @@ body {
   }
 
   .outputarea {
-    width: 100%;
+    width: 688px;
   }
 
   .textareaoutput {
-    width: 90%;
+    width: 100%;
     height: 11.25rem;
 
     border-radius: 0;
