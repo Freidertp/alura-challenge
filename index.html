@@ -23,9 +23,11 @@
     <div class="content">
 
       <div class="inputarea">
-        <textarea class="textareainput" placeholder="Ingrese el texto aquí" oninput="lowerCase()"></textarea>
+        <textarea class="textareainput" placeholder="Ingrese el texto aquí"
+          oninput="sanitizeTextAreaInput()"></textarea>
+        <img src="mic.svg" alt="mic_img" id="inputmic" onclick="startSpeechRecognition()">
 
-        <div class=" notice">
+        <div class="notice">
           <img src="bi_exclamation-circle-fill.png" alt="exclamationCircle">
           <span>Solo letras minúsculas y sin acentos</span>
         </div>
