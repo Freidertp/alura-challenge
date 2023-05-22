@@ -10,22 +10,23 @@
   <link rel="stylesheet" href="styles.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet
+  ">
 </head>
 
 <body>
 
   <div class="container">
     <div class="header">
-      <img src="logo.png" alt="logoAlura" id="imglogo">
+      <img src="logo.png" alt="logoAlura" class="imglogo">
     </div>
 
     <div class="content">
 
       <div class="inputarea">
-        <textarea class="textareainput" placeholder="Ingrese el texto aquí"
-          oninput="sanitizeTextAreaInput()"></textarea>
-        <img src="mic.svg" alt="mic_img" id="inputmic" onclick="startSpeechRecognition()">
+        <textarea class="textareainput" placeholder="Ingrese el texto aquí" oninput="sanitizeTextAreaInput()"
+          autofocus></textarea>
+        <img src="mic.svg" alt="mic_img" class="inputmic">
 
         <div class="notice">
           <img src="bi_exclamation-circle-fill.png" alt="exclamationCircle">
@@ -33,28 +34,43 @@
         </div>
 
         <div class="buttons">
-          <button class="button1" id="button1">Encriptar</button>
-          <button class="button2" id="button2">Desencriptar</button>
+          <button class="button1">Encriptar</button>
+          <button class="button2">Desencriptar</button>
         </div>
 
       </div>
 
       <div class="outputarea">
         <textarea class="textareaoutput" readonly></textarea>
-        <img src="muñeco.png" alt="aluracharacter" id="aluracharacter">
+        <img src="volume.svg" alt="volume-icon" class="volume">
+        <img src="muñeco.png" alt="aluracharacter" class="aluracharacter">
         <div class="notice">
           <span class="span1">Ningún mensaje fue encontrado</span>
           <span class="span2">Ingresa el texto que desees encriptar o desencriptar.</span>
         </div>
         <div class="button">
-          <button class="button3" id="button3">Copiar</button>
+          <button class="button3">Copiar</button>
         </div>
       </div>
 
     </div>
-  </div>
 
-  <script src="script.js"></script>
+    <div class="footer">
+      <div class="span">
+        <span>Contáctame</span>
+      </div>
+
+      <div class="contactme">
+        <a href="https://github.com/Freidertp" target="_blank">
+          <img class="github" src="github.svg" alt="GitHub">
+        </a>
+        <a href="https://www.linkedin.com/in/freider-torres/" target="_blank">
+          <img class="linkedin" src="linkedin.svg" alt="LinkedIn">
+        </a>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 
 </html>
