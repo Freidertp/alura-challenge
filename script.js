@@ -1,180 +1,164 @@
-// Seleccionar los botones y áreas de texto
-const button1 = document.querySelector(".button1");
-const button2 = document.querySelector(".button2");
-const button3 = document.querySelector(".button3");
-const textAreaInput = document.querySelector(".textareainput");
-const textAreaOutput = document.querySelector(".textareaoutput");
+//Creo un objeto que se utiliza para almacenar referencias a los elementos del documento HTML que se seleccionan mediante la función document.querySelector().
 
-/*
- * Establecer el enfoque en el área de texto y seleccionar todo al cargar la página.
- * Esto asegura que el cursor esté listo para empezar a escribir.
- */
-const textarea = document.querySelector("textarea");
-textarea.focus(); // Establecer el enfoque en el área de texto
-textarea.select(); // Seleccionar todo el contenido del área de texto
+const elements = {
+   textAreaInput: document.querySelector(".textareainput"),
+   inputMic: document.querySelector(".inputmic"),
+   button1: document.querySelector(".button1"),
+   button2: document.querySelector(".button2"),
+   button3: document.querySelector(".button3"),
+   textAreaOutput: document.querySelector(".textareaoutput"),
+   outputPlay: document.querySelector(".volume"),
+   aluraCharacter: document.querySelector(".aluracharacter"),
+   outputAreaNotice: document.querySelector(".outputarea .notice"),
+   outputAreaButton: document.querySelector(".outputarea .button"),
+}
+
+//Es un objeto que mapea las vocales acentuadas con sus equivalentes sin tilde 
+const vowelMap = {
+   'á': 'a',
+   'é': 'e',
+   'í': 'i',
+   'ó': 'o',
+   'ú': 'u',
+   'ü': 'u'
+};
 
 
-/**
- * Convierte el contenido del área de texto a minúsculas y filtra los caracteres no permitidos.
- */
+//Convierte el contenido del area de texto a minúsculas y filtra los caracteres no permitidos
 function sanitizeTextAreaInput() {
-    textAreaInput.value = textAreaInput.value.toLowerCase();
-    textAreaInput.value = textAreaInput.value.replace(/[^a-zñ ]/g, "");
+   elements.textAreaInput.value = elements.textAreaInput.value //Obtengo valor actual del textarea
+      .toLowerCase()  //Convierto texto a minúsculas
+      .replace(/[áéíóúü]/g, match => vowelMap[match]) // Remplazo vocales con tildes
+      .replace(/[^a-zñ ]/g, ""); //Remplazo cualquier caracter a exepción de esos
 }
 
-/**
- * Muestra los elementos predeterminados en el área de salida.
- */
+
+
+//Muestra los elementos predeterminados en el área del output
 function showDefaultOutput() {
-    const aluraCharacterImage = document.getElementById("aluracharacter");
-    const noticeDiv = document.querySelector('.outputarea .notice');
-    const textAreaOutput = document.querySelector(".textareaoutput");
-    const button = document.querySelector(".button");
-
-    aluraCharacterImage.style.display = "block"; // Mostrar la imagen de búsqueda de Alura
-    noticeDiv.style.display = "flex"; // Mostrar el div.notice
-
-    textAreaOutput.style.display = "none"; // Restaurar el estado inicial del área de salida
-    button.style.display = "none"; // Ocultar el botón
+   elements.outputPlay.style.display = "none"; //Ocultar el botón de play
+   elements.aluraCharacter.style.display = "inline-block"; //Mostrar la imagen de busqueda Alura
+   elements.outputAreaNotice.style.display = "flex"; //Mostrar el Outputarea .notice
+   elements.textAreaOutput.style.display = "none"; //Restaurar el estado inicial del text outputarea
+   elements.outputAreaButton.style.display = "none"; //Ocultar el div del botón copiar
 }
 
-
-/*
- * Muestra el resultado en el área de salida.
- */
-function showResult() {
-    const aluraCharacterImage = document.getElementById("aluracharacter");
-    const noticeDiv = document.querySelector('.outputarea .notice');
-    const textAreaOutput = document.querySelector(".textareaoutput");
-    const button = document.querySelector(".button");
-
-    aluraCharacterImage.style.display = "none"; // Ocultar la imagen
-    noticeDiv.style.display = "none"; // Ocultar el div.notice
-
-    textAreaOutput.style.display = "block"; // Mostrar el área de salida
-    button.style.display = "block"; // Mostrar el botón de copiar
-    textAreaOutput.value = textAreaOutput.value; // Mostrar el mensaje
+//Muestra el resultado en el outputarea.
+function showResult(text) {
+   elements.aluraCharacter.style.display = "none"; //Ocultar la imagen de busqueda Alura del outputarea
+   elements.outputAreaNotice.style.display = "none"; //Ocultar el div notice del outputarea
+   elements.outputPlay.style.display = "inline-block" //Mostrado el botón de escuchar
+   elements.textAreaOutput.style.display = "inline-block"; //Mostrando el area del resultado
+   elements.outputAreaButton.style.display = "inline-block"; //Mostrando el botón de copiar
+   elements.textAreaOutput.value = text;
 }
 
-/**
- * Encripta el contenido del área de entrada.
- */
+//Función de encriptado
 function encrypt() {
-    let text = textAreaInput.value.trim(); // Eliminar los espacios
-    text = text.replaceAll("e", "enter");
-    text = text.replaceAll("i", "imes");
-    text = text.replaceAll("a", "ai");
-    text = text.replaceAll("o", "ober");
-    text = text.replaceAll("u", "ufat");
-    textAreaOutput.value = text;
+   let text = elements.textAreaInput.value.trim(); // Eliminar los espacios
+   text = text.replaceAll("e", "enter");
+   text = text.replaceAll("i", "imes");
+   text = text.replaceAll("a", "ai");
+   text = text.replaceAll("o", "ober");
+   text = text.replaceAll("u", "ufat");
 
-    showResult(); // Llamar a la función para mostrar el resultado
+   showResult(text); // Llamar a la función que muestra el resultado, pasandole el parametro necesario
 }
 
-/**
- * Desencripta el contenido del área de entrada.
- */
+//Función de desencriptado
 function decrypt() {
-    let text = textAreaInput.value.trim();
-    text = text.replaceAll("enter", "e");
-    text = text.replaceAll("imes", "i");
-    text = text.replaceAll("ai", "a");
-    text = text.replaceAll("ober", "o");
-    text = text.replaceAll("ufat", "u");
-    textAreaOutput.value = text;
+   let text = elements.textAreaInput.value.trim(); //Eliminar los espacios
+   text = text.replaceAll("enter", "e");
+   text = text.replaceAll("imes", "i");
+   text = text.replaceAll("ai", "a");
+   text = text.replaceAll("ober", "o");
+   text = text.replaceAll("ufat", "u");
 
-    showResult(); // Llamar a la función para mostrar el resultado
+   showResult(text); // Llamar a la función que muestra el resultado, pasandole el parametro necesario
 }
 
-
-/**
- * Procesa el texto dado, convirtiéndolo a minúsculas y eliminando caracteres no deseados.
- * @param {string} text - El texto a procesar.
- * @returns {string} El texto procesado.
- */
-function processText(text) {
-    text = text.toLowerCase();
-    text = text.replace(/[^a-z0-9áéíóúüñ\s]/g, '');
-    return text;
-}
-
-/*
- * Inicia el reconocimiento de voz y actualiza el área de entrada con el texto reconocido.
- */
+//Funcion para pasar de voz a texto
 function startSpeechRecognition() {
-    const recognition = new webkitSpeechRecognition() || new SpeechRecognition();
-    recognition.lang = 'es-ES';
+   const recognition = new (webkitSpeechRecognition || SpeechRecognition)(); //Creo una instancia del objeto de reconocimiento de voz (webkitSpeechRecognition en navegadores webkit o SpeechRecognition en otros navegadores).
+   recognition.lang = "es-ES"; // Establezco el idioma de reconocimiento de voz como español.
 
-    recognition.onresult = function (event) {
-        const result = event.results[0][0].transcript;
-        const textarea = document.querySelector('.textareainput');
-        const processedText = removeAccentMarks(result.toLowerCase());
-        textarea.value = processedText;
-    };
+   recognition.onstart = function () { // Es un evento que se dispara cuando inicia el reconocimiento de voz
+      elements.textAreaInput.setAttribute("placeholder", "Escuchando..."); //Cambio el placeholder a 'Escuchando...' 
+      elements.inputMic.style.animation = 'pulse 1s infinite'; // Agrego una animación al microfono 
+   };
 
-    recognition.onerror = function (event) {
-        console.log('Error en el reconocimiento de voz: ' + event.error);
-    };
+   recognition.onresult = function (event) { //Es un evento que se dispara cuando se obtiene un resultado de reconocimiento de voz.
+      const result = event.results[0][0].transcript; //Se procesa para convertirlo a minúsculas y eliminar caracteres no deseados, y luego se asigna al valor del campo de entrada de texto
+      const processedText = result.toLowerCase().replace(/[^a-z0-9áéíóúüñ\s]/g, '');
+      elements.textAreaInput.value = processedText;  //Ingreso lo que escuchó el microfono al inputarea
+      sanitizeTextAreaInput();  //Limpiar el area del input (evitar caracteres especiales, etc...)
+   };
 
-    recognition.start();
+   recognition.onend = function () { //Es un evento que se dispara cuando se termina el reconocimiento de voz. 
+      elements.textAreaInput.setAttribute("placeholder", "Ingrese el texto aquí"); //Regreso el estado del placeholder a la normalidad
+      elements.inputMic.style.animation = ""; //Regreso el mic a la normalidad (le quito la animación)
+   };
+
+   recognition.start(); //Inicio el proceso de reconocimiento de voz
 }
 
-/**
- * Elimina las marcas de acento del texto dado.
- * @param {string} text - El texto con marcas de acento.
- * @returns {string} El texto sin marcas de acento.
- */
-function removeAccentMarks(text) {
-    const accentMap = {
-        'á': 'a',
-        'é': 'e',
-        'í': 'i',
-        'ó': 'o',
-        'ú': 'u',
-        'ü': 'u',
-        'ñ': 'n'
-    };
+//Función para escuchar el texto del outputarea
+function playText() {
+   const speechSynthesis = window.speechSynthesis; //Creo un objeto de síntesis de voz
+   const speechText = new SpeechSynthesisUtterance(elements.textAreaOutput.value);
 
-    return text.replace(/[áéíóúüñ]/g, match => accentMap[match]);
+   speechText.lang = "es-ES"; //Configuro el lenguaje a español
+   elements.outputPlay.style.animation = "pulse 1s infinite"; //Agrego una animación a la imagen
+   speechSynthesis.speak(speechText); //Reproduzco el texto del outputarea
+
+   speechText.onend = function () {
+      elements.outputPlay.style.animation = "none"; //Al finalizar, cancelo la animación
+   }
 }
 
 
-/**
- * Maneja el evento de clic en el botón 1. Si el área de entrada no está vacía, llama a la función de encriptación.
- */
-button1.addEventListener("click", () => {
-    if (textAreaInput.value !== "") {
-        encrypt();
-    }
+//Agrego un listener que ejecuta una función cuando no hay nada escrito
+elements.textAreaInput.addEventListener("keyup", () => {
+   if (elements.textAreaInput.value.length === 0) {
+      showDefaultOutput(); //Llama a la función que muestra todo por defecto
+
+      if (speechSynthesis.speaking) { //Compruebo si está reproduciendo texto
+         speechSynthesis.cancel(); //En caso de que sí, lo cancelo
+      }
+   }
 });
 
-/**
- * Maneja el evento de clic en el botón 2. Si el área de entrada no está vacía, llama a la función de desencriptación.
- */
-button2.addEventListener("click", () => {
-    if (textAreaInput.value !== "") {
-        decrypt();
-    }
+//Agrego un listener que ejecuta una función cuando hay algo escrito
+elements.button1.addEventListener("click", () => {
+   if (elements.textAreaInput.value !== "") {
+      encrypt(); //Llamo a la función que encripta
+      elements.textAreaOutput.scrollIntoView({ behavior: "smooth" }); //Scrolleo a la sección del outputarea
+   }
 });
 
-/**
- * Maneja el evento de clic en el botón 3. Selecciona el contenido del área de salida y copia al portapapeles.
- */
-button3.addEventListener('click', () => {
-    textAreaOutput.select();
-    document.execCommand('copy');
+//Agrego un listener que ejecuta una función cuando hay algo escrito
+elements.button2.addEventListener("click", () => {
+   if (elements.textAreaInput.value !== "") {
+      decrypt(); //Llamo a la función que desencripta
+      elements.textAreaOutput.scrollIntoView({ behavior: "smooth" }); //Scrolleo a la sección del outputarea
+   }
 });
 
-/**
- * Comprueba si el área de entrada está vacía al presionar una tecla. Si está vacía, llama a la función showDefault().
- */
-textAreaInput.addEventListener("keyup", function () {
-    if (textAreaInput.value.length === 0) {
-        showDefaultOutput();
-    }
+//Agrego un listener que ejecuta una función cuando hay algo escrito
+elements.button3.addEventListener("click", () => {
+   navigator.clipboard.writeText(elements.textAreaOutput.value) //Copia lo que haya en el outputarea
+   elements.textAreaOutput.select(); //Selecciono el texto para dar un efecto de copiado listo
+   setTimeout(() => { //Agrego un delay para luego aplicar el focus
+      elements.textAreaInput.focus(); //Scrolleo y dejo el cursor listo para escribir en el inputarea
+
+   }, 500);
 });
 
+elements.inputMic.addEventListener("click", () => {
+   startSpeechRecognition();
+});
 
-
-
+elements.outputPlay.addEventListener("click", () => {
+   playText();
+})
 

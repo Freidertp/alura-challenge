@@ -12,9 +12,8 @@ body {
   flex-direction: column;
 }
 
-#imglogo {
-  margin: 2.5rem;
-
+.imglogo {
+  margin: 2.5rem 2.5rem 2.5rem 1rem;
   width: 7.5rem;
   height: 3rem;
 }
@@ -29,6 +28,23 @@ body {
   padding: 2.5rem 2.5rem 0 2.5rem;
   font-family: 'Inter';
   position: relative;
+
+}
+
+.inputmic {
+  width: 2rem;
+  height: 2rem;
+
+  position: absolute;
+  top: -2.5rem;
+  right: 0.05rem;
+
+  transition: .1s transform ease-in-out;
+  animation: none;
+
+  &.inputmic:hover {
+    cursor: pointer;
+  }
 
 }
 
@@ -48,28 +64,8 @@ body {
 
   &.textareainput::placeholder {
     color: #0A3871;
+    opacity: 0.8;
   }
-}
-
-#inputmic {
-  width: 2rem;
-  height: 2rem;
-
-  position: absolute;
-  right: 0.05rem;
-  top: -2.5rem;
-
-  border-radius: 10rem;
-
-  transition: .1s transform ease-in-out;
-
-  &#inputmic:hover {
-    cursor: pointer;
-    transform: scale(1.05);
-    border: 3px solid #edb1f1;
-    background-color: #edb1f1;
-  }
-
 }
 
 .inputarea .notice {
@@ -102,7 +98,7 @@ body {
 }
 
 .button1 {
-  width: 20.5rem;
+  width: 20rem;
   height: 4.1rem;
 
   background-color: #0A3871;
@@ -110,7 +106,7 @@ body {
   border-radius: 1.5rem;
   font-size: 1em;
 
-  transition: .1s transform ease-in-out;
+  transition: transform .1s ease-in-out;
 
   &.button1:hover {
     cursor: pointer;
@@ -119,7 +115,7 @@ body {
 }
 
 .button2 {
-  width: 20.5rem;
+  width: 20rem;
   height: 4.1rem;
 
   border: 1px solid #0A3871;
@@ -127,7 +123,7 @@ body {
   border-radius: 1.5rem;
   font-size: 1em;
 
-  transition: .1s transform ease-in-out;
+  transition: transform .1s ease-in-out;
 
   &.button2:hover {
     cursor: pointer;
@@ -142,10 +138,33 @@ body {
   justify-content: center;
   width: 25rem;
 
+  position: relative;
+
+
   background-color: white;
   box-shadow: 0 1.5rem 2rem -0.5rem rgba(0, 0, 0, 0.08);
   border-radius: 2rem;
 
+}
+
+.volume {
+  display: none;
+
+  width: 2rem;
+  height: 1.5rem;
+
+  position: absolute;
+  top: 0.5rem;
+  left: 1.8rem;
+
+  opacity: 0.7;
+
+  transition: .1s transform ease-in-out;
+  animation: none;
+
+  &.volume:hover {
+    cursor: pointer;
+  }
 }
 
 .textareaoutput {
@@ -166,7 +185,7 @@ body {
   resize: none;
 }
 
-#aluracharacter {
+.aluracharacter {
   width: 21rem;
   height: 19rem;
 }
@@ -197,7 +216,7 @@ body {
 }
 
 .button {
-  display: none;
+  position: relative;
 
   padding-top: 1rem;
   padding-bottom: 2rem;
@@ -222,18 +241,73 @@ body {
   }
 }
 
+.footer {
+  text-align: center;
+  margin-top: 0.6rem;
+}
+
+.footer .span {
+  margin-bottom: 1.25rem;
+}
+
+.footer span {
+  display: block;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #495057;
+}
+
+.contactme {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 3rem;
+}
+
+.contactme a {
+  transition: transform .3s ease-in-out;
+}
+
+.contactme a:hover {
+  animation: pulse .5s ease-in-out infinite;
+
+
+  transform: scale(1.02);
+}
+
+.contactme img {
+  width: 1.8rem;
+  height: auto;
+}
+
+
+/* Animations */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.2);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
 
 
 /* Media Queries */
 
-@media (max-width:1200px) {
+@media screen and (max-width:1200px) {
 
   .container {
     overflow: auto;
   }
 
-  #imglogo {
-    margin: 2.5rem 0 2.5rem 0;
+  .imglogo {
+    margin: 1rem 0 1rem 0;
+    justify-content: center;
   }
 
   .inputarea {
@@ -241,20 +315,24 @@ body {
     width: 43rem;
   }
 
+  .inputarea .notice {
+    padding-top: 2.5rem;
+  }
+
   .outputarea {
-    width: 688px;
+    width: 43rem;
   }
 
   .textareaoutput {
-    width: 100%;
-    height: 11.25rem;
+    width: 90%;
+    height: 6.2rem;
 
     border-radius: 0;
     padding: 0;
     margin: 2rem 2rem 0 2rem;
   }
 
-  #aluracharacter {
+  .aluracharacter {
     display: none !important;
   }
 
@@ -275,9 +353,12 @@ body {
     width: 100%;
   }
 
+  .footer {
+    margin-top: 0.6rem;
+  }
 }
 
-@media (max-width:700px) {
+@media screen and (max-width:700px) {
 
   body {
     display: flex;
@@ -293,7 +374,7 @@ body {
   .content {
     padding: 0;
     width: 100%;
-    padding-bottom: 2.5rem;
+    padding-bottom: 0;
     flex-direction: column;
     place-items: center;
   }
@@ -310,24 +391,29 @@ body {
   }
 
   .inputarea .notice {
-    padding-top: 4rem;
+    padding-top: 0;
   }
 
   .buttons {
     width: 100%;
-
-    display: flex;
-    flex-direction: column;
   }
 
   .button1 {
     width: 100%;
 
     font-size: 1em;
+
+    &.button1:hover {
+      transform: none;
+    }
   }
 
   .button2 {
     width: 100%;
+
+    &.button2:hover {
+      transform: none;
+    }
   }
 
   .outputarea {
@@ -338,6 +424,20 @@ body {
 }
 
 @media screen and (max-width:430px) {
+  .inputarea .notice {
+    margin-top: 1rem;
+
+  }
+
+  .textareaoutput {
+    height: 20rem;
+  }
+
+  .buttons {
+    display: flex;
+    flex-direction: column;
+  }
+
   .outputarea .notice .span1 {
     font-size: 1em;
   }
