@@ -216,6 +216,7 @@ body {
 }
 
 .button {
+  display: none;
   position: relative;
 
   padding-top: 1rem;
